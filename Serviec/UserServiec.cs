@@ -28,14 +28,18 @@ namespace expensesProject.Serviec
         public async Task<User> Delete(int Id)
         {
             User? Users = await _unitOfwork.Users.FindByIdAsync(Id);
+            
+
 
             if (Users == null)
             {
                 return null;
             }
+            UserCards? UserCards = await _unitOfwork.UserCards.FindByIdAsync(Users.UserCardsId);
 
+
+            _unitOfwork.UserCards.DeleteOne(UserCards);
             _unitOfwork.Users.DeleteOne(Users);
-            _unitOfwork.UserCards.DeleteOne(Users.UserCards);
             _unitOfwork.Commitchanges();
 
             return Users;

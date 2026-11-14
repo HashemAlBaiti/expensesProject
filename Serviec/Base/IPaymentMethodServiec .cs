@@ -7,10 +7,10 @@ namespace expensesProject.Serviec.Base
     {
         Task<IEnumerable<PaymentMethod>> GetAll();
 
-        Task<PaymentMethod> GetById(int userId);
-        int? Add(PaymentMethod? User);
+        Task<PaymentMethod> GetById(int PaymentMethodId);
+        int? Add(PaymentMethod? PaymentMethods);
 
-        Task<int?> Update(int Id, PaymentMethod? User);
+        Task<int?> Update(int Id, PaymentMethod? PaymentMethods);
 
         Task<PaymentMethod> Delete(int Id);
     }

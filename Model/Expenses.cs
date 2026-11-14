@@ -13,16 +13,16 @@ namespace expensesProject.Model
         public DateTime ExpenseDate { get; set; }
         public int UserId { get; set; }
         [ForeignKey("UserId")]
-      
+        [JsonIgnore]
         public User? User { get; set; }
         public int PaymentMethodId { get; set; }
         [ForeignKey("PaymentMethodId")]
-     
+        [JsonIgnore]
         public PaymentMethod? PaymentMethod { get; set; }
         public int CatigoryId { get; set; }
 
         [ForeignKey("CatigoryId")]
-        
+        [JsonIgnore]
         public Catigory? Catigory { get; set; }
 
        

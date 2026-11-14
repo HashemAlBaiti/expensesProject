@@ -25,11 +25,11 @@ namespace expensesProject.Data
 
             modelBuilder.Entity<Expenses>().HasOne(e => e.Catigory)
              .WithMany(q => q.Expenses).HasForeignKey(e => e.CatigoryId)
-             .OnDelete(DeleteBehavior.ClientSetNull);
+             .OnDelete(DeleteBehavior.NoAction);
 
             modelBuilder.Entity<Expenses>().HasOne(e => e.PaymentMethod)
       .WithMany(q => q.Expenses).HasForeignKey(e => e.PaymentMethodId)
-      .OnDelete(DeleteBehavior.ClientSetNull);
+      .OnDelete(DeleteBehavior.NoAction);
 
           
 

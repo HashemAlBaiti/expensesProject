@@ -9,10 +9,10 @@ namespace expensesProject.Model
 
 
         [JsonIgnore]
-        public int? UserCardsId { get; set; }
+        public int UserCardsId { get; set; }
 
         [ForeignKey("UserCardsId")]
-        public UserCards UserCards { get; set; }
+        public UserCards? UserCards { get; set; }
         [JsonIgnore]
         public ICollection<Expenses>? Expenses { get; set; }
 

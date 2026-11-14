@@ -12,8 +12,8 @@ using expensesProject.Data;
 namespace expensesProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20261109192435_CreateNewTable")]
-    partial class CreateNewTable
+    [Migration("20261110141249_Create")]
+    partial class Create
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -69,9 +69,6 @@ namespace expensesProject.Migrations
                     b.Property<int>("PaymentMethodId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserCartId")
-                        .HasColumnType("int");
-
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
@@ -84,8 +81,6 @@ namespace expensesProject.Migrations
                     b.HasIndex("CatigoryId");
 
                     b.HasIndex("PaymentMethodId");
-
-                    b.HasIndex("UserCartId");
 
                     b.HasIndex("UserId");
 
@@ -121,7 +116,7 @@ namespace expensesProject.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserCardsId")
+                    b.Property<int?>("UserCardsId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -142,10 +137,6 @@ namespace expensesProject.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(max)");
 
@@ -163,25 +154,17 @@ namespace expensesProject.Migrations
                     b.HasOne("expensesProject.Model.Catigory", "Catigory")
                         .WithMany("Expenses")
                         .HasForeignKey("CatigoryId")
-                        .OnDelete(DeleteBehavior.ClientNoAction)
                         .IsRequired();
 
                     b.HasOne("expensesProject.Model.PaymentMethod", "PaymentMethod")
                         .WithMany("Expenses")
                         .HasForeignKey("PaymentMethodId")
-                        .OnDelete(DeleteBehavior.ClientNoAction)
-                        .IsRequired();
-
-                    b.HasOne("expensesProject.Model.UserCards", "UserCards")
-                        .WithMany()
-                        .HasForeignKey("UserCartId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("expensesProject.Model.User", "User")
                         .WithMany("Expenses")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.ClientNoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Catigory");
@@ -189,17 +172,13 @@ namespace expensesProject.Migrations
                     b.Navigation("PaymentMethod");
 
                     b.Navigation("User");
-
-                    b.Navigation("UserCards");
                 });
 
             modelBuilder.Entity("expensesProject.Model.User", b =>
                 {
                     b.HasOne("expensesProject.Model.UserCards", "UserCards")
                         .WithMany()
-                        .HasForeignKey("UserCardsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserCardsId");
 
                     b.Navigation("UserCards");
                 });
