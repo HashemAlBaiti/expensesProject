@@ -56,7 +56,7 @@ namespace expensesProject.Server
                 CategoriesName = q.Catigory!.Name,
                 UserCardEmail = q.User.UserCards.Email,
                 UserCardPhone = q.User.UserCards.Phone,
-            }, q => q.OrderBy(k => k.User));
+            }, q => q.OrderBy(k => k.User!.Name));
 
         }
 
@@ -76,7 +76,7 @@ namespace expensesProject.Server
                 CategoriesName = q.Catigory!.Name,
                 UserCardEmail = q.User.UserCards.Email,
                 UserCardPhone = q.User.UserCards.Phone,
-            }, q => q.OrderBy(k => k.User));
+            }, q => q.OrderBy(k => k.User!.Name));
         }
 
 
@@ -111,7 +111,7 @@ namespace expensesProject.Server
                 CategoriesName=q.Catigory!.Name,
                 UserCardEmail=q.User.UserCards.Email,
                 UserCardPhone=q.User.UserCards.Phone,
-            }, q=>q.OrderBy(k=> k.User));
+            }, q=>q.OrderBy(k=> k.User!.Name));
 
 
         }
@@ -130,7 +130,7 @@ namespace expensesProject.Server
                 CategoriesName = q.Catigory!.Name,
                 UserCardEmail=q.User.UserCards.Email,
                 UserCardPhone=q.User.UserCards.Phone,
-            }, q=>q.OrderBy(k=> k.User));
+            }, q=>q.OrderBy(k=> k.User!.Name));
 
 
         }

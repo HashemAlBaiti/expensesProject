@@ -63,7 +63,7 @@ namespace expensesProject.Controllers
         {
             int? Number = _expensesServers.Add(expenses);
 
-            if (Number is null)
+            if (Number is null || Number < 1)
                 return BadRequest();
 
 
@@ -77,7 +77,7 @@ namespace expensesProject.Controllers
         {
             int? Number = await _expensesServers.Update(Id,expenses);
 
-            if (Number is null || Number < 0)
+            if (Number is null || Number < 1)
                 return BadRequest();
 
 
@@ -91,7 +91,7 @@ namespace expensesProject.Controllers
         {
             Expenses Expenseies = await _expensesServers.Delete(Id);
 
-            if (Expenseies is null)
+            if (Expenseies is null )
                 return NotFound();
 
 

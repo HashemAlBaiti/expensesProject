@@ -30,7 +30,7 @@ namespace expensesProject.Controllers
         {
             int? Number=_userServiec.Add(Users);
 
-            if (Number is null)
+            if (Number is null || Number < 1)
                 return BadRequest();
 
 
@@ -43,7 +43,7 @@ namespace expensesProject.Controllers
         {
             int? Number = await _userServiec.Update(Id,Users);
 
-            if (Number is null || Number < 0)
+            if (Number is null || Number < 1)
                 return NotFound();
 
 
