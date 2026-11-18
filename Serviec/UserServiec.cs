@@ -57,7 +57,7 @@ namespace expensesProject.Serviec
 
         public async Task<int?> Update(int Id, User? User)
         {
-            User? Use = await _unitOfwork.Users.SelectOneAsync("UserCards", e=> e.Id==Id);
+            User? Use = await _unitOfwork.Users.FindByIdAsync(Id, "UserCards");
 
             if (Use == null)
             {

@@ -143,16 +143,15 @@ namespace Repostory.Repostory
             return _context.Set<T>().SingleOrDefault(match);
         }
 
-        public async Task<T> SelectOneAsync(string agers, Expression<Func<T, bool>> match)
+        public async Task<T> SelectOneAsync(Expression<Func<T, bool>> match, params string[] agers)
         {
 
 
             IQueryable<T> query =  _context.Set<T>();
-
-           
-                query = query.Include(agers);
-            
-
+            foreach (var ager in agers)
+            {
+                query = query.Include(ager);
+            }
             return query.SingleOrDefault();
 
 
@@ -243,6 +242,20 @@ namespace Repostory.Repostory
             }
 
             IEnumerable<T> result = query.Skip((PageNumber - 1) * PageSize).Take(PageSize).ToList();
+
+            return result;
+        }
+
+        public async Task<IEnumerable<T>> SelectWithPaginationAsync(int PageNumber, int PageSize, params string[] agers)
+        {
+            IQueryable<T> query = _context.Set<T>();
+
+            foreach (var Table in agers)
+            {
+                query = query.Include(Table);
+            }
+
+            IEnumerable<T> result = await query.Skip((PageNumber - 1) * PageSize).Take(PageSize).ToListAsync();
 
             return result;
         }

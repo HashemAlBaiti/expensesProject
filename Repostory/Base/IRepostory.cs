@@ -13,7 +13,7 @@ namespace expensesProject.Repostory.Base
 
 
         T SelectOne(Expression<Func<T, bool>> match);
-        Task<T> SelectOneAsync(string agers, Expression<Func<T, bool>> match);  
+        Task<T> SelectOneAsync(Expression<Func<T, bool>> match, params string[] agers);  
 
 
         List<T> SelectMany(Expression<Func<T, bool>> match);
@@ -21,7 +21,9 @@ namespace expensesProject.Repostory.Base
 
         IEnumerable<T> SelectWithPagination(int PageNumber, int PageSize, params string[] agers);
         IEnumerable<T> SelectWithPagination(IQueryable<T> query, int PageNumber, int PageSize, params string[] agers);
+        Task<IEnumerable<T>> SelectWithPaginationAsync(int PageNumber, int PageSize, params string[] agers);
         Task<IEnumerable<T>> SelectWithPaginationAsync(IQueryable<T> query, int PageNumber, int PageSize, params string[] agers);
+
 
         Task<List<T>> SelectManyAsync(Expression<Func<T, bool>> match);
 
